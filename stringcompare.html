@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+String1: <input type="text" id="input1">
+String2: <input type="text" id="input2">
+<br>
+Result:  <input type="checkbox" id="result">
+
+<button onclick="compareStrings()">COMPARE</button>
+
+<script>
+
+function compareStrings() {
+document.getElementById("result").checked = checkPermutation()
+}
+
+function checkPermutation() {
+  var str1 = document.getElementById("input1").value;
+  var str2 = document.getElementById("input2").value;
+
+  if(str1.length !== str2.length) {
+    return false;
+  }
+  var arr = [];
+  for(var i = 0; i < str1.length; i++) {
+    if(arr[str1[i]]) {
+      arr[str1.charAt(i)]++;
+    } else {
+      arr[str1.charAt(i)] = 1;
+    }
+   }
+  for(i = 0; i < str2.length; i++) {
+    arr[str2.charAt(i)]--;
+  }
+  for(i in arr) {
+    if(arr[i] !== 0) {
+      return false;
+    }
+  }
+  return true;
+}
+</script>
+
+</body>
+</html>
